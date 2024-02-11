@@ -43,6 +43,7 @@ struct JobCellView: View {
                 .font(.headline)
             Text("City: \(job.city)")
             Text("Remote: \(job.isRemote ? "Yes" : "No")")
+            Text("Days since application: \(job.daysSinceApplication)")
             Text("Application Date: \(job.applicationDate, formatter: dateFormatter)")
         }
         .padding()
