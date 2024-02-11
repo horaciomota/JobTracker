@@ -18,7 +18,6 @@ struct JobTrackerView: View {
                 ForEach(viewModel.jobs.indices, id: \.self) { index in
                     JobCellView(job: viewModel.jobs[index])
                 }
-                // Swipe to delete option
                 .onDelete(perform: viewModel.deleteJobs(at:))
             }
             .navigationTitle("Job Tracker")
@@ -39,11 +38,20 @@ struct JobCellView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(job.companyName)
-                .font(.headline)
-            Text("City: \(job.city)")
-            Text("Remote: \(job.isRemote ? "Yes" : "No")")
-            Text("Days since application: \(job.daysSinceApplication)")
+            HStack {
+                Text(job.companyName)
+                    .font(.headline)
+                    .foregroundColor(Color.blue)
+                Spacer()
+                Text("\(job.daysSinceApplication) days ago")
+            }
+            HStack {
+                Text(job.city)
+                Text(job.country)
+                Spacer()
+                Text(job.isRemote ? "Remote" : "In-site")
+                    .foregroundColor(Color.gray)
+            }
             Text("Application Date: \(job.applicationDate, formatter: dateFormatter)")
         }
         .padding()

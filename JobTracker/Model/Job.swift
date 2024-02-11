@@ -11,8 +11,10 @@ import Foundation
 struct Job: Codable {
     var companyName: String
     var city: String
+    var country: String
     var isRemote: Bool
     var applicationDate: Date
+    var status: String
 
     var daysSinceApplication: Int { // Computed property para calcular o número de dias desde a aplicação
             let calendar = Calendar.current
