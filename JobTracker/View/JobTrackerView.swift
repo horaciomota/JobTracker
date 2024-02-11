@@ -14,9 +14,12 @@ struct JobTrackerView: View {
     var body: some View {
         NavigationView {
             List {
+                Text("Número de trabalhos: \(viewModel.jobs.count)")
                 ForEach(viewModel.jobs.indices, id: \.self) { index in
                     JobCellView(job: viewModel.jobs[index])
                 }
+                // Swipe to delete option
+                .onDelete(perform: viewModel.deleteJobs(at:))
             }
             .navigationTitle("Job Tracker")
             .navigationBarItems(trailing: Button(action: {
