@@ -1,0 +1,668 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3DA2515C2B79287F00C0938A /* JobTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA2515B2B79287F00C0938A /* JobTrackerApp.swift */; };
+		3DA2515E2B79287F00C0938A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA2515D2B79287F00C0938A /* ContentView.swift */; };
+		3DA251602B79288100C0938A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DA2515F2B79288100C0938A /* Assets.xcassets */; };
+		3DA251632B79288100C0938A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DA251622B79288100C0938A /* Preview Assets.xcassets */; };
+		3DA2516D2B79288100C0938A /* JobTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA2516C2B79288100C0938A /* JobTrackerTests.swift */; };
+		3DA251772B79288100C0938A /* JobTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA251762B79288100C0938A /* JobTrackerUITests.swift */; };
+		3DA251792B79288100C0938A /* JobTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA251782B79288100C0938A /* JobTrackerUITestsLaunchTests.swift */; };
+		3DA251872B7928E800C0938A /* ContributionChart in Frameworks */ = {isa = PBXBuildFile; productRef = 3DA251862B7928E800C0938A /* ContributionChart */; };
+		3DA2518C2B792C9200C0938A /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA2518B2B792C9200C0938A /* Job.swift */; };
+		3DA2518E2B792CFB00C0938A /* JobTrackerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA2518D2B792CFB00C0938A /* JobTrackerViewModel.swift */; };
+		3DA251902B792D0C00C0938A /* JobTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA2518F2B792D0C00C0938A /* JobTrackerView.swift */; };
+		3DA251922B792D3400C0938A /* addJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA251912B792D3400C0938A /* addJobView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3DA251692B79288100C0938A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3DA251502B79287F00C0938A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DA251572B79287F00C0938A;
+			remoteInfo = JobTracker;
+		};
+		3DA251732B79288100C0938A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3DA251502B79287F00C0938A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DA251572B79287F00C0938A;
+			remoteInfo = JobTracker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3DA251582B79287F00C0938A /* JobTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DA2515B2B79287F00C0938A /* JobTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTrackerApp.swift; sourceTree = "<group>"; };
+		3DA2515D2B79287F00C0938A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3DA2515F2B79288100C0938A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3DA251622B79288100C0938A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3DA251682B79288100C0938A /* JobTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JobTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DA2516C2B79288100C0938A /* JobTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTrackerTests.swift; sourceTree = "<group>"; };
+		3DA251722B79288100C0938A /* JobTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JobTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DA251762B79288100C0938A /* JobTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTrackerUITests.swift; sourceTree = "<group>"; };
+		3DA251782B79288100C0938A /* JobTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3DA2518B2B792C9200C0938A /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		3DA2518D2B792CFB00C0938A /* JobTrackerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTrackerViewModel.swift; sourceTree = "<group>"; };
+		3DA2518F2B792D0C00C0938A /* JobTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTrackerView.swift; sourceTree = "<group>"; };
+		3DA251912B792D3400C0938A /* addJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addJobView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3DA251552B79287F00C0938A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DA251872B7928E800C0938A /* ContributionChart in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DA251652B79288100C0938A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DA2516F2B79288100C0938A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3DA2514F2B79287F00C0938A = {
+			isa = PBXGroup;
+			children = (
+				3DA2515A2B79287F00C0938A /* JobTracker */,
+				3DA2516B2B79288100C0938A /* JobTrackerTests */,
+				3DA251752B79288100C0938A /* JobTrackerUITests */,
+				3DA251592B79287F00C0938A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3DA251592B79287F00C0938A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3DA251582B79287F00C0938A /* JobTracker.app */,
+				3DA251682B79288100C0938A /* JobTrackerTests.xctest */,
+				3DA251722B79288100C0938A /* JobTrackerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3DA2515A2B79287F00C0938A /* JobTracker */ = {
+			isa = PBXGroup;
+			children = (
+				3DA251932B792E9900C0938A /* App */,
+				3DA2518A2B792C8400C0938A /* Model */,
+				3DA251892B792C5700C0938A /* View */,
+				3DA251882B792C3D00C0938A /* ViewModel */,
+				3DA2515D2B79287F00C0938A /* ContentView.swift */,
+				3DA2515F2B79288100C0938A /* Assets.xcassets */,
+				3DA251612B79288100C0938A /* Preview Content */,
+			);
+			path = JobTracker;
+			sourceTree = "<group>";
+		};
+		3DA251612B79288100C0938A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				3DA251622B79288100C0938A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3DA2516B2B79288100C0938A /* JobTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				3DA2516C2B79288100C0938A /* JobTrackerTests.swift */,
+			);
+			path = JobTrackerTests;
+			sourceTree = "<group>";
+		};
+		3DA251752B79288100C0938A /* JobTrackerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3DA251762B79288100C0938A /* JobTrackerUITests.swift */,
+				3DA251782B79288100C0938A /* JobTrackerUITestsLaunchTests.swift */,
+			);
+			path = JobTrackerUITests;
+			sourceTree = "<group>";
+		};
+		3DA251882B792C3D00C0938A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3DA2518D2B792CFB00C0938A /* JobTrackerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3DA251892B792C5700C0938A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3DA2518F2B792D0C00C0938A /* JobTrackerView.swift */,
+				3DA251912B792D3400C0938A /* addJobView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3DA2518A2B792C8400C0938A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DA2518B2B792C9200C0938A /* Job.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3DA251932B792E9900C0938A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				3DA2515B2B79287F00C0938A /* JobTrackerApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3DA251572B79287F00C0938A /* JobTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DA2517C2B79288100C0938A /* Build configuration list for PBXNativeTarget "JobTracker" */;
+			buildPhases = (
+				3DA251542B79287F00C0938A /* Sources */,
+				3DA251552B79287F00C0938A /* Frameworks */,
+				3DA251562B79287F00C0938A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JobTracker;
+			packageProductDependencies = (
+				3DA251862B7928E800C0938A /* ContributionChart */,
+			);
+			productName = JobTracker;
+			productReference = 3DA251582B79287F00C0938A /* JobTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3DA251672B79288100C0938A /* JobTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DA2517F2B79288100C0938A /* Build configuration list for PBXNativeTarget "JobTrackerTests" */;
+			buildPhases = (
+				3DA251642B79288100C0938A /* Sources */,
+				3DA251652B79288100C0938A /* Frameworks */,
+				3DA251662B79288100C0938A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3DA2516A2B79288100C0938A /* PBXTargetDependency */,
+			);
+			name = JobTrackerTests;
+			productName = JobTrackerTests;
+			productReference = 3DA251682B79288100C0938A /* JobTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3DA251712B79288100C0938A /* JobTrackerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DA251822B79288100C0938A /* Build configuration list for PBXNativeTarget "JobTrackerUITests" */;
+			buildPhases = (
+				3DA2516E2B79288100C0938A /* Sources */,
+				3DA2516F2B79288100C0938A /* Frameworks */,
+				3DA251702B79288100C0938A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3DA251742B79288100C0938A /* PBXTargetDependency */,
+			);
+			name = JobTrackerUITests;
+			productName = JobTrackerUITests;
+			productReference = 3DA251722B79288100C0938A /* JobTrackerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3DA251502B79287F00C0938A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					3DA251572B79287F00C0938A = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					3DA251672B79288100C0938A = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 3DA251572B79287F00C0938A;
+					};
+					3DA251712B79288100C0938A = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 3DA251572B79287F00C0938A;
+					};
+				};
+			};
+			buildConfigurationList = 3DA251532B79287F00C0938A /* Build configuration list for PBXProject "JobTracker" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3DA2514F2B79287F00C0938A;
+			packageReferences = (
+				3DA251852B7928E800C0938A /* XCRemoteSwiftPackageReference "SwiftUI-ContributionChart" */,
+			);
+			productRefGroup = 3DA251592B79287F00C0938A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3DA251572B79287F00C0938A /* JobTracker */,
+				3DA251672B79288100C0938A /* JobTrackerTests */,
+				3DA251712B79288100C0938A /* JobTrackerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3DA251562B79287F00C0938A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DA251632B79288100C0938A /* Preview Assets.xcassets in Resources */,
+				3DA251602B79288100C0938A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DA251662B79288100C0938A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DA251702B79288100C0938A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3DA251542B79287F00C0938A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DA2515E2B79287F00C0938A /* ContentView.swift in Sources */,
+				3DA2518C2B792C9200C0938A /* Job.swift in Sources */,
+				3DA2515C2B79287F00C0938A /* JobTrackerApp.swift in Sources */,
+				3DA251902B792D0C00C0938A /* JobTrackerView.swift in Sources */,
+				3DA251922B792D3400C0938A /* addJobView.swift in Sources */,
+				3DA2518E2B792CFB00C0938A /* JobTrackerViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DA251642B79288100C0938A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DA2516D2B79288100C0938A /* JobTrackerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DA2516E2B79288100C0938A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DA251772B79288100C0938A /* JobTrackerUITests.swift in Sources */,
+				3DA251792B79288100C0938A /* JobTrackerUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3DA2516A2B79288100C0938A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DA251572B79287F00C0938A /* JobTracker */;
+			targetProxy = 3DA251692B79288100C0938A /* PBXContainerItemProxy */;
+		};
+		3DA251742B79288100C0938A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DA251572B79287F00C0938A /* JobTracker */;
+			targetProxy = 3DA251732B79288100C0938A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3DA2517A2B79288100C0938A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3DA2517B2B79288100C0938A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3DA2517D2B79288100C0938A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"JobTracker/Preview Content\"";
+				DEVELOPMENT_TEAM = SKHUBRDPGV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = HoracioMota.JobTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3DA2517E2B79288100C0938A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"JobTracker/Preview Content\"";
+				DEVELOPMENT_TEAM = SKHUBRDPGV;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = HoracioMota.JobTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3DA251802B79288100C0938A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SKHUBRDPGV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = HoracioMota.JobTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JobTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JobTracker";
+			};
+			name = Debug;
+		};
+		3DA251812B79288100C0938A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SKHUBRDPGV;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = HoracioMota.JobTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JobTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/JobTracker";
+			};
+			name = Release;
+		};
+		3DA251832B79288100C0938A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SKHUBRDPGV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = HoracioMota.JobTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = JobTracker;
+			};
+			name = Debug;
+		};
+		3DA251842B79288100C0938A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SKHUBRDPGV;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = HoracioMota.JobTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = JobTracker;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3DA251532B79287F00C0938A /* Build configuration list for PBXProject "JobTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DA2517A2B79288100C0938A /* Debug */,
+				3DA2517B2B79288100C0938A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DA2517C2B79288100C0938A /* Build configuration list for PBXNativeTarget "JobTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DA2517D2B79288100C0938A /* Debug */,
+				3DA2517E2B79288100C0938A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DA2517F2B79288100C0938A /* Build configuration list for PBXNativeTarget "JobTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DA251802B79288100C0938A /* Debug */,
+				3DA251812B79288100C0938A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DA251822B79288100C0938A /* Build configuration list for PBXNativeTarget "JobTrackerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DA251832B79288100C0938A /* Debug */,
+				3DA251842B79288100C0938A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3DA251852B7928E800C0938A /* XCRemoteSwiftPackageReference "SwiftUI-ContributionChart" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/VIkill33/SwiftUI-ContributionChart.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3DA251862B7928E800C0938A /* ContributionChart */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DA251852B7928E800C0938A /* XCRemoteSwiftPackageReference "SwiftUI-ContributionChart" */;
+			productName = ContributionChart;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 3DA251502B79287F00C0938A /* Project object */;
+}
