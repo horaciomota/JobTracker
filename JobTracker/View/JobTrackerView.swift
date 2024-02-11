@@ -38,24 +38,24 @@ struct JobCellView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            VStack{
-                Text(job.status)
-            }
+//            VStack{
+//                Text("\(job.daysSinceApplication) days ago")
+//            }
             HStack {
-                Text(job.companyName)
+                Text(job.position)
                     .font(.headline)
-                    .foregroundColor(Color.blue)
+                    .fontWeight(.bold)
                 Spacer()
-                Text("\(job.daysSinceApplication) days ago")
+                Text(job.status)
+                    .font(.subheadline)
             }
             HStack {
-                Text(job.city)
-                Text(job.country)
-                Spacer()
-                Text(job.isRemote ? "Remote" : "In-site")
-                    .foregroundColor(Color.gray)
+                Text("\(job.companyName) > \(job.seniority)")
+                    .font(.subheadline)
+//                Text(job.isRemote ? "Remote" : "In-site")
+//                    .foregroundColor(Color.gray)
             }
-            Text("Application Date: \(job.applicationDate, formatter: dateFormatter)")
+//            Text("Application Date: \(job.applicationDate, formatter: dateFormatter)")
         }
         .padding()
     }

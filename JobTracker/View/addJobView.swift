@@ -9,62 +9,70 @@ import SwiftUI
 
 struct addJobView: View {
 
-    enum Symbol: String {
-        case email = "envelope"
-        case microphone = "mic"
-        case dislike = "thumbsdown"
-        case like = "thumbsup"
-        case checkmark = "checkmark"
-
-        var systemName: String {
-            return "symbol." + self.rawValue
-        }
-    }
-
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: JobTrackerViewModel
 
     @State private var companyName = ""
-    @State private var city = ""
+    @State private var position = ""
     @State private var country = ""
     @State private var isRemote = false
     @State private var applicationDate = Date()
+    @State private var selectedSeniorityIndex = 0
 
     // Adicione um valor padrão para o status
     @State private var selectedStatusIndex = 0
     let applicationStatuses = ["Applied", "Interviewing", "Rejected", "Offer Received", "Hired"]
+    let seniorityOptions = ["Inter", "Junior", "Mid", "Senior"]
 
+
+    let statusIcons: [String: String] = [
+            "Applied": "envelope",
+            "Interviewing": "mic",
+            "Rejected": "hand.thumbsdown",
+            "Offer Received": "hand.thumbsup",
+            "Hired": "checkmark"
+        ]
 
     var body: some View {
         NavigationView {
             Form {
-                TextField("Company Name", text: $companyName)
-                TextField("City", text: $city)
-                TextField("Country", text: $country)
-                Toggle("Remote", isOn: $isRemote)
-                DatePicker("Application Date", selection: $applicationDate, displayedComponents: .date)
+                Section(header: Text("Info")) {
 
-                Picker("Status", selection: $selectedStatusIndex) {
-                    ForEach(applicationStatuses.indices, id: \.self) { index in
-                        HStack {
-                            Image(systemName: Symbol(rawValue: applicationStatuses[index])?.systemName ?? "")
-                            Text(applicationStatuses[index])
-                        }
-                        .tag(index)
-                    }
+                    TextField("Company Name", text: $companyName)
+                    TextField("Positiom", text: $position)
+                    TextField("Country", text: $country)
+                    Picker("Seniority", selection: $selectedSeniorityIndex) {
+                                       ForEach(seniorityOptions.indices, id: \.self) { index in
+                                           Text(seniorityOptions[index])
+                                       }
+                                   }
+                    Toggle("Remote", isOn: $isRemote)
+                    DatePicker("Application Date", selection: $applicationDate, displayedComponents: .date)
                 }
-                .pickerStyle(WheelPickerStyle())
-                .clipped()
+
+                Section(header: Text("Status")) {
+                Picker("Status", selection: $selectedStatusIndex) {
+                                   ForEach(applicationStatuses.indices, id: \.self) { index in
+                                       HStack {
+                                           Image(systemName: statusIcons[applicationStatuses[index]] ?? "")
+                                           Text(applicationStatuses[index])
+                                       }
+                                       .tag(index)
+                                   }
+                               }
+                               .pickerStyle(WheelPickerStyle())
+                               .clipped()
+                }
 
             }
-            .navigationTitle("Add Job")
+            .navigationTitle("Add application")
             .navigationBarItems(trailing: Button("Save", action: saveJob))
         }
     }
 
     private func saveJob() {
          // Passe o status para o inicializador de Job
-         let newJob = Job(companyName: companyName, city: city, country: country, isRemote: isRemote, applicationDate: applicationDate, status: applicationStatuses[selectedStatusIndex])
+        let newJob = Job(companyName: companyName, position: position, country: country, isRemote: isRemote, applicationDate: applicationDate, status: applicationStatuses[selectedStatusIndex], seniority: seniorityOptions[selectedSeniorityIndex])
          viewModel.addJob(newJob)
          presentationMode.wrappedValue.dismiss()
      }
