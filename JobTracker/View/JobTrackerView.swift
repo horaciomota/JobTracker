@@ -38,6 +38,9 @@ struct JobCellView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
+            VStack{
+                Text(job.status)
+            }
             HStack {
                 Text(job.companyName)
                     .font(.headline)

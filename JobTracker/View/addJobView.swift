@@ -18,10 +18,8 @@ struct addJobView: View {
     @State private var applicationDate = Date()
 
     // Adicione um valor padrão para o status
-    let status = "Em andamento"
-
     @State private var selectedStatusIndex = 0
-    let applicationStatuses = ["Em andamento", "Aceito", "Recusado", "Entrevista agendada", "Outro"]
+    let applicationStatuses = ["Applied", "Interviewing", "Rejected", "Offer Received", "Hired"]
 
 
     var body: some View {
@@ -34,13 +32,12 @@ struct addJobView: View {
                 DatePicker("Application Date", selection: $applicationDate, displayedComponents: .date)
 
                 Picker("Status", selection: $selectedStatusIndex) {
-                    ForEach(0..<applicationStatuses.count) { index in
-                        Text(applicationStatuses[index]).tag(index)
-                    }
-                }
-                .pickerStyle(WheelPickerStyle())
-                .frame(width: 200)
-                .clipped()
+                             ForEach(applicationStatuses.indices, id: \.self) { index in
+                                 Text(applicationStatuses[index])
+                             }
+                         }
+                         .pickerStyle(WheelPickerStyle())
+                         .clipped()
             }
             .navigationTitle("Add Job")
             .navigationBarItems(trailing: Button("Save", action: saveJob))
@@ -49,7 +46,7 @@ struct addJobView: View {
 
     private func saveJob() {
          // Passe o status para o inicializador de Job
-         let newJob = Job(companyName: companyName, city: city, country: country, isRemote: isRemote, applicationDate: applicationDate, status: status)
+         let newJob = Job(companyName: companyName, city: city, country: country, isRemote: isRemote, applicationDate: applicationDate, status: applicationStatuses[selectedStatusIndex])
          viewModel.addJob(newJob)
          presentationMode.wrappedValue.dismiss()
      }
