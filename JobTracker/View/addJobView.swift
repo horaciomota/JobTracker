@@ -22,6 +22,25 @@ struct addJobView: View {
     // Adicione um valor padrão para o status
     @State private var selectedStatusIndex = 0
     let applicationStatuses = ["Applied", "Interviewing", "Rejected", "Offer Received", "Hired"]
+    
+    // Defina a função getColorForStatus fora do corpo da View
+    func getColorForStatus(_ status: String) -> Color {
+        switch status {
+        case "Applied":
+            return Color.blue
+        case "Interviewing":
+            return Color.green
+        case "Rejected":
+            return Color.red
+        case "Offer Received":
+            return Color.yellow
+        case "Hired":
+            return Color.purple
+        default:
+            return Color.black
+        }
+    }
+
     let seniorityOptions = ["Inter", "Junior", "Mid", "Senior"]
 
 
@@ -56,6 +75,8 @@ struct addJobView: View {
                                        HStack {
                                            Image(systemName: statusIcons[applicationStatuses[index]] ?? "")
                                            Text(applicationStatuses[index])
+                                               .foregroundColor(getColorForStatus(applicationStatuses[index]))
+
                                        }
                                        .tag(index)
                                    }

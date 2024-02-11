@@ -36,6 +36,24 @@ struct JobTrackerView: View {
 struct JobCellView: View {
     var job: Job
 
+    // Defina a função getColorForStatus fora do corpo da View
+    func getColorForStatus(_ status: String) -> Color {
+        switch status {
+        case "Applied":
+            return Color.blue
+        case "Interviewing":
+            return Color.green
+        case "Rejected":
+            return Color.red
+        case "Offer Received":
+            return Color.yellow
+        case "Hired":
+            return Color.purple
+        default:
+            return Color.black
+        }
+    }
+
     var body: some View {
         VStack(alignment: .leading) {
 //            VStack{
@@ -48,6 +66,8 @@ struct JobCellView: View {
                 Spacer()
                 Text(job.status)
                     .font(.subheadline)
+                    .foregroundColor(getColorForStatus(job.status))
+
             }
             HStack {
                 Text("\(job.companyName) > \(job.seniority)")
