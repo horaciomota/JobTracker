@@ -8,6 +8,19 @@
 import SwiftUI
 
 struct addJobView: View {
+
+    enum Symbol: String {
+        case email = "envelope"
+        case microphone = "mic"
+        case dislike = "thumbsdown"
+        case like = "thumbsup"
+        case checkmark = "checkmark"
+
+        var systemName: String {
+            return "symbol." + self.rawValue
+        }
+    }
+
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: JobTrackerViewModel
 
@@ -32,12 +45,17 @@ struct addJobView: View {
                 DatePicker("Application Date", selection: $applicationDate, displayedComponents: .date)
 
                 Picker("Status", selection: $selectedStatusIndex) {
-                             ForEach(applicationStatuses.indices, id: \.self) { index in
-                                 Text(applicationStatuses[index])
-                             }
-                         }
-                         .pickerStyle(WheelPickerStyle())
-                         .clipped()
+                    ForEach(applicationStatuses.indices, id: \.self) { index in
+                        HStack {
+                            Image(systemName: Symbol(rawValue: applicationStatuses[index])?.systemName ?? "")
+                            Text(applicationStatuses[index])
+                        }
+                        .tag(index)
+                    }
+                }
+                .pickerStyle(WheelPickerStyle())
+                .clipped()
+
             }
             .navigationTitle("Add Job")
             .navigationBarItems(trailing: Button("Save", action: saveJob))
