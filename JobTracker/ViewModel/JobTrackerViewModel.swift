@@ -11,7 +11,10 @@ class JobTrackerViewModel: ObservableObject {
     @Published var jobs: [Job] = []
 
     func addJob(_ job: Job) {
-        jobs.append(job)
+        //Putting the new element in first place
+        jobs.insert(job, at: 0)
+        //Putting the new element in last place
+//        jobs.append(job)
         print(jobs.count)
     }
 
