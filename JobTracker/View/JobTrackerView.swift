@@ -14,6 +14,27 @@ struct JobTrackerView: View {
     var body: some View {
         NavigationView {
             List {
+                // Top statis
+                HStack {
+                    VStack {
+                        Text("\(viewModel.jobs.count)")
+                            .font(.title)
+                        Text("Aplications")
+                }
+                    Spacer()
+                VStack {
+                    Text("\(viewModel.jobs.count)")
+                        .font(.title)
+                    Text("Interviews")
+                }
+                    Spacer()
+                VStack {
+                    Text("\(viewModel.jobs.count)")
+                        .font(.title)
+                    Text("Rejections")
+                }
+                }
+
                 Text("Número de trabalhos: \(viewModel.jobs.count)")
                 ForEach(viewModel.jobs.indices, id: \.self) { index in
                     JobCellView(job: viewModel.jobs[index])
@@ -68,7 +89,7 @@ struct JobCellView: View {
                     .font(.subheadline)
                     .foregroundColor(Color.white)
                     .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                    .background(RoundedRectangle(cornerRadius: 5)
+                    .background(RoundedRectangle(cornerRadius: 15)
                                 .fill(getColorForStatus(job.status))
                                 )
             }

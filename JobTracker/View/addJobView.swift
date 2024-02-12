@@ -13,7 +13,7 @@ struct addJobView: View {
     @ObservedObject var viewModel: JobTrackerViewModel
 
     @State private var companyName = ""
-    @State private var position = ""
+    @State private var position = "Ios Developer"
     @State private var country = ""
     @State private var isRemote = false
     @State private var applicationDate = Date()
