@@ -66,8 +66,11 @@ struct JobCellView: View {
                 Spacer()
                 Text(job.status)
                     .font(.subheadline)
-                    .foregroundColor(getColorForStatus(job.status))
-
+                    .foregroundColor(Color.white)
+                    .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+                    .background(RoundedRectangle(cornerRadius: 5)
+                                .fill(getColorForStatus(job.status))
+                                )
             }
             HStack {
                 Text("\(job.companyName) > \(job.seniority)")
