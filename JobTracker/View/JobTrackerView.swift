@@ -11,81 +11,83 @@ struct JobTrackerView: View {
     @StateObject private var viewModel = JobTrackerViewModel()
     
     init(viewModel: JobTrackerViewModel = JobTrackerViewModel()) {
-           self._viewModel = StateObject(wrappedValue: viewModel)
-       }
-
+        self._viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
                 if viewModel.jobsList.isEmpty {
                     ContentUnavailable()
                 } else {
-
-                        // Lista
+                    
+                    // Lista
                     List {
                         ForEach(viewModel.jobsList.indices, id: \.self) { index in
-                                // Linha vertical à esquerda (linha do tempo)
-                                VStack(alignment: .leading, spacing: 0) {
-                                    HStack(alignment: .top) {
-                                        ZStack {
-                                            Rectangle()
-                                                .frame(width: 1)
-                                                   Circle()
-                                                       .fill(Color.gray)
-                                                       .frame(width: 22, height: 12)
-                                                       .padding(.top, -40)
-                                        }
-
-
-                                        HStack {
-                                            VStack(alignment: .leading) {
-                                                       // Conteúdo do cartão
+                            // Linha vertical à esquerda (linha do tempo)
+                            VStack(alignment: .leading, spacing: 0) {
+                                HStack(alignment: .top) {
+                                    ZStack {
+                                        Rectangle()
+                                            .frame(width: 1)
+                                        Circle()
+                                            .fill(Color.gray)
+                                            .frame(width: 22, height: 12)
+                                            .padding(.top, -40)
+                                    }
+                                    
+                                    
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 10) {
+                                            HStack {
+                                                // Conteúdo do cartão
                                                 Text(viewModel.jobsList[index].companyName)
-                                                           .font(.headline)
-                                                           .foregroundColor(.white)
-
-                                                Text(viewModel.jobsList[index].jobTitle)
-                                                           .font(.subheadline)
-                                                           .foregroundColor(.white)
-
-                                                HStack {
-                                                    Image(systemName: "globe")
-                                                        .foregroundStyle(Color.white)
-                                                        .font(.footnote)
-
-                                                    Text("Ireland")
-                                                                .font(.subheadline)
-                                                            .foregroundColor(.white)
-
-
-                                                        Text("55k - 60k")
-                                                            .font(.subheadline)
-                                                            .foregroundColor(.white)
-                                                }
-                                                   }
-                                            Spacer()
-
+                                                    .font(.headline)
+                                                    .foregroundColor(.white)
+                                                Spacer()
+                                                Text("in-site")
+                                                    .font(.footnote)
+                                                    .foregroundColor(.white)
+                                            }
+                                            
+                                            Text(viewModel.jobsList[index].jobTitle)
+                                                .font(.subheadline)
+                                                .foregroundColor(.white)
+                                            
+                                            HStack {
+                                                Image(systemName: "eurosign")
+                                                    .foregroundStyle(Color.white)
+                                                    .font(.footnote)
+                                                
+                                                Text("55k - 60k")
+                                                    .font(.footnote)
+                                                    .foregroundColor(.white)
+                                            }
                                         }
-                                        .padding(23) // Espaçamento interno do card
-                                        .background(Color.black.opacity(0.8))
-                                        .cornerRadius(10)
-                                        }
-
+                                        Spacer()
+                                        
+                                    }
+                                    .frame(maxHeight: .infinity)
+                                    .padding(15) // Espaçamento interno do card
+                                    .background(Color.black.opacity(0.8))
+                                    .cornerRadius(10)
                                 }
-                                .padding(.leading, 0) // Espaçamento entre a bolinha e a borda esquerda
+                                
+                            }
+                            .padding(.leading, -20) // Espaçamento entre a bolinha e a borda esquerda
                         }
                         .onDelete(perform: viewModel.deleteTask)
                     }
                     .listStyle(PlainListStyle())
-
-
+                    
+                    
                 }
-
+                
                 Spacer()
-
+                
                 Button(action: {
                     viewModel.isShowingAddJobView.toggle()
-
+                    
                 }) {
                     Text("Adicionar Tarefa")
                         .padding()
@@ -96,23 +98,18 @@ struct JobTrackerView: View {
             }
             .padding()
             .navigationTitle("Applications")
-            .sheet(isPresented: $viewModel.isShowingAddJobView, onDismiss: viewModel.addJob) {
-                AddJobView(companyName: $viewModel.companyName, jobTitle: $viewModel.jobTitle, remoteJob: $viewModel.remoteJob, applicationStatus: .constant(nil), viewModel: viewModel)
-                    .presentationDetents([.large, .medium, .fraction(0.75)])
+            .sheet(isPresented: $viewModel.isShowingAddJobView) {
+                AddJobView(companyName: $viewModel.companyName, jobTitle: $viewModel.jobTitle, remoteJob: $viewModel.remoteJob, experienceLevel: $viewModel.experienceLevel, viewModel: viewModel)
             }
         }
     }
 }
 
-#Preview {
-    let viewModel = JobTrackerViewModel(jobs: [
-           Job(companyName: "Company A", jobTitle: "Job 1", remoteJob: false, applicationDate: Date()),
-           Job(companyName: "Company B", jobTitle: "Job 2", remoteJob: true, applicationDate: Date()),
-           Job(companyName: "Company C", jobTitle: "Job 3", remoteJob: true, applicationDate: Date())
-       ])
-       return JobTrackerView(viewModel: viewModel)
-   }
 
+
+#Preview {
+    JobTrackerView()
+}
 
 
 

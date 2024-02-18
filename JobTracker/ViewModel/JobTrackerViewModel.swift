@@ -10,21 +10,24 @@ import Foundation
 class JobTrackerViewModel: ObservableObject {
     @Published var jobsList: [Job] = []
     @Published var isShowingAddJobView = false
+
     @Published var companyName = ""
-    @Published var jobTitle = ""
+    @Published var jobTitle = "Ios Developer"
     @Published var remoteJob = false
     @Published var applicationDate = Date()
-    
+    @Published var experienceLevel: ExperienceLevel = .junior
+
     init(jobs: [Job] = []) {
            self.jobsList = jobs
        }
 
     func addJob() {
         if !companyName.isEmpty && !jobTitle.isEmpty {
-            jobsList.append(Job(companyName: companyName, jobTitle: jobTitle, remoteJob: remoteJob, applicationDate: applicationDate))
+            jobsList.append(Job(companyName: companyName, jobTitle: jobTitle, remoteJob: remoteJob, applicationDate: applicationDate, experienceLevel: experienceLevel))
             saveTasks()
             companyName = ""
             jobTitle = ""
+            experienceLevel = .junior
         }
     }
 
