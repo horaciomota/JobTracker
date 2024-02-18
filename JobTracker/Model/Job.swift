@@ -7,20 +7,8 @@
 
 import Foundation
 
-// Struct needs to be codable because i need to parse data to default
-struct Job: Codable {
+struct Job: Identifiable {
+    let id = UUID()
     var companyName: String
-    var position: String
-    var country: String
-    var isRemote: Bool
-    var applicationDate: Date
-    var status: String
-    var seniority: String
-
-    var daysSinceApplication: Int { // Computed property para calcular o número de dias desde a aplicação
-            let calendar = Calendar.current
-            let currentDate = Date()
-            let days = calendar.dateComponents([.day], from: applicationDate, to: currentDate).day ?? 0
-            return max(days, 0)
-        }
+    var jobTitle: String
 }
