@@ -46,6 +46,8 @@ struct JobTrackerView: View {
             .navigationTitle("Tarefas")
             .sheet(isPresented: $viewModel.isShowingAddJobView, onDismiss: viewModel.addJob) {
             AddJobView(companyName: $viewModel.companyName, jobTitle: $viewModel.jobTitle, viewModel: viewModel)
+                    .presentationDetents([.medium, .large])
+                    .presentationDragIndicator(.visible)
             }
         }
     }
