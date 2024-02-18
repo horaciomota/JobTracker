@@ -11,4 +11,6 @@ struct Job: Identifiable {
     let id = UUID()
     var companyName: String
     var jobTitle: String
+    var remoteJob: Bool
+    var applicationDate: Date
 }

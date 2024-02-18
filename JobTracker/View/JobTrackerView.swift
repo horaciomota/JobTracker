@@ -9,6 +9,10 @@ import SwiftUI
 
 struct JobTrackerView: View {
     @StateObject private var viewModel = JobTrackerViewModel()
+    
+    init(viewModel: JobTrackerViewModel = JobTrackerViewModel()) {
+           self._viewModel = StateObject(wrappedValue: viewModel)
+       }
 
     var body: some View {
         NavigationView {
@@ -16,24 +20,40 @@ struct JobTrackerView: View {
                 if viewModel.jobsList.isEmpty {
                     ContentUnavailable()
                 } else {
+
+                        // Lista
                     List {
-                        ForEach(viewModel.jobsList) { job in
-                            VStack(alignment: .leading) {
-                                Text(job.companyName)
-                                    .font(.headline)
-                                Text(job.jobTitle)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                            }
+                        ForEach(viewModel.jobsList.indices, id: \.self) { index in
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        // Conteúdo do cartão
+                                        Text(viewModel.jobsList[index].companyName)
+                                            .font(.headline)
+                                            .foregroundColor(.white)
+                                        Text(viewModel.jobsList[index].jobTitle)
+                                            .font(.subheadline)
+                                            .foregroundColor(.white)
+
+                                        Rectangle()
+                                            .fill(Color.black)
+                                            .cornerRadius(10)
+                                            .frame(height: 120) // Altura do cartão
+                                            .padding(.horizontal, 10) // Distância do lado esquerdo
+
+                                    }
+                            .padding(.vertical, 5) // Espaçamento vertical entre os cartões
                         }
                         .onDelete(perform: viewModel.deleteTask)
                     }
+                    .listStyle(PlainListStyle())
+
+
                 }
 
                 Spacer()
 
                 Button(action: {
                     viewModel.isShowingAddJobView.toggle()
+
                 }) {
                     Text("Adicionar Tarefa")
                         .padding()
@@ -45,59 +65,24 @@ struct JobTrackerView: View {
             .padding()
             .navigationTitle("Tarefas")
             .sheet(isPresented: $viewModel.isShowingAddJobView, onDismiss: viewModel.addJob) {
-            AddJobView(companyName: $viewModel.companyName, jobTitle: $viewModel.jobTitle, viewModel: viewModel)
-                    .presentationDetents([.medium, .large])
-                    .presentationDragIndicator(.visible)
+                AddJobView(companyName: $viewModel.companyName, jobTitle: $viewModel.jobTitle, remoteJob: $viewModel.remoteJob, applicationStatus: .constant(nil), viewModel: viewModel)
+                    .presentationDetents([.large, .medium, .fraction(0.75)])
             }
         }
     }
 }
-
-// Sheet que abre o form
-struct AddJobView: View {
-    @Binding var companyName: String
-    @Binding var jobTitle: String
-
-    @ObservedObject var viewModel: JobTrackerViewModel
-
-    var body: some View {
-        VStack {
-            TextField("Título", text: $companyName)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            TextField("Descrição", text: $jobTitle)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            Spacer()
-
-            Button(action: {
-                    viewModel.addJob()
-                if !companyName.isEmpty && !jobTitle.isEmpty {
-                    Text("Preencha os campos")
-                }else {
-                    viewModel.addJob()
-                    viewModel.isShowingAddJobView.toggle()
-                }
-
-            }) {
-                Text("Add Application")
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.yellow.opacity(0.5))
-                    .cornerRadius(10)
-            }
-
-        }
-        .padding()
-        .navigationTitle("Adicionar Tarefa")
-    }
-}
-
 
 #Preview {
-    JobTrackerView()
-}
+    let viewModel = JobTrackerViewModel(jobs: [
+           Job(companyName: "Company A", jobTitle: "Job 1", remoteJob: false, applicationDate: Date()),
+           Job(companyName: "Company B", jobTitle: "Job 2", remoteJob: true, applicationDate: Date()),
+           Job(companyName: "Company C", jobTitle: "Job 3", remoteJob: true, applicationDate: Date())
+       ])
+       return JobTrackerView(viewModel: viewModel)
+   }
+
+
+
 
 struct ContentUnavailable: View {
     var body: some View {
