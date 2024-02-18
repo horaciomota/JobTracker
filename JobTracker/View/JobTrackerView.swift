@@ -24,23 +24,55 @@ struct JobTrackerView: View {
                         // Lista
                     List {
                         ForEach(viewModel.jobsList.indices, id: \.self) { index in
-                                    VStack(alignment: .leading, spacing: 10) {
-                                        // Conteúdo do cartão
-                                        Text(viewModel.jobsList[index].companyName)
-                                            .font(.headline)
-                                            .foregroundColor(.white)
-                                        Text(viewModel.jobsList[index].jobTitle)
-                                            .font(.subheadline)
-                                            .foregroundColor(.white)
+                                // Linha vertical à esquerda (linha do tempo)
+                                VStack(alignment: .leading, spacing: 0) {
+                                    HStack(alignment: .top) {
+                                        ZStack {
+                                            Rectangle()
+                                                .frame(width: 1)
+                                                   Circle()
+                                                       .fill(Color.gray)
+                                                       .frame(width: 22, height: 12)
+                                                       .padding(.top, -40)
+                                        }
 
-                                        Rectangle()
-                                            .fill(Color.black)
-                                            .cornerRadius(10)
-                                            .frame(height: 120) // Altura do cartão
-                                            .padding(.horizontal, 10) // Distância do lado esquerdo
 
-                                    }
-                            .padding(.vertical, 5) // Espaçamento vertical entre os cartões
+                                        HStack {
+                                            VStack(alignment: .leading) {
+                                                       // Conteúdo do cartão
+                                                Text(viewModel.jobsList[index].companyName)
+                                                           .font(.headline)
+                                                           .foregroundColor(.white)
+
+                                                Text(viewModel.jobsList[index].jobTitle)
+                                                           .font(.subheadline)
+                                                           .foregroundColor(.white)
+
+                                                HStack {
+                                                    Image(systemName: "globe")
+                                                        .foregroundStyle(Color.white)
+                                                        .font(.footnote)
+
+                                                    Text("Ireland")
+                                                                .font(.subheadline)
+                                                            .foregroundColor(.white)
+
+
+                                                        Text("55k - 60k")
+                                                            .font(.subheadline)
+                                                            .foregroundColor(.white)
+                                                }
+                                                   }
+                                            Spacer()
+
+                                        }
+                                        .padding(23) // Espaçamento interno do card
+                                        .background(Color.black.opacity(0.8))
+                                        .cornerRadius(10)
+                                        }
+
+                                }
+                                .padding(.leading, 0) // Espaçamento entre a bolinha e a borda esquerda
                         }
                         .onDelete(perform: viewModel.deleteTask)
                     }
@@ -63,7 +95,7 @@ struct JobTrackerView: View {
                 }
             }
             .padding()
-            .navigationTitle("Tarefas")
+            .navigationTitle("Applications")
             .sheet(isPresented: $viewModel.isShowingAddJobView, onDismiss: viewModel.addJob) {
                 AddJobView(companyName: $viewModel.companyName, jobTitle: $viewModel.jobTitle, remoteJob: $viewModel.remoteJob, applicationStatus: .constant(nil), viewModel: viewModel)
                     .presentationDetents([.large, .medium, .fraction(0.75)])
