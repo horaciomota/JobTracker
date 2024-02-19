@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import SwiftUI
 
-enum ExperienceLevel: String, CaseIterable {
-    case junior = "Junior"
-    case mid = "Mid"
-    case senior = "Senior"
+enum ApplicationStatus: String, CaseIterable {
+    case applied = "Applied"
+    case interviewed = "Interviewed"
+    case rejected = "Rejected"
+    case hired = "Hired"
+
 }
 
 struct Job: Identifiable {
@@ -19,5 +22,44 @@ struct Job: Identifiable {
     var jobTitle: String
     var remoteJob: Bool
     var applicationDate: Date
-    var experienceLevel: ExperienceLevel // Adicionando a propriedade de nível de experiência
+    var applicationStatus: ApplicationStatus
+
+    var backgroundColor: Color {
+          switch applicationStatus {
+          case .applied:
+              return Color.black
+          case .interviewed:
+              return Color.yellow
+          case .rejected:
+              return Color.purple
+          case .hired:
+              return Color.green // Adicionamos a cor verde para o status "hired"
+          }
+      }
+
+
+    var cardWidth: CGFloat {
+         switch applicationStatus {
+         case .applied:
+             return 150 // Largura para status "applied"
+         case .interviewed:
+             return 200 // Largura para status "interview"
+         case .hired:
+             return 250 // Largura para status "hired"
+         case .rejected:
+             return 200 // Largura para status "rejected"
+         }
+     }
+
+    var textColor: Color {
+        switch applicationStatus {
+        case .applied:
+            return Color.white
+        default:
+            return Color.black
+        }
+    }
+
+
 }
+

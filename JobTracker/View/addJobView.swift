@@ -10,7 +10,7 @@ struct AddJobView: View {
     @Binding var companyName: String
     @Binding var jobTitle: String
     @Binding var remoteJob: Bool
-    @Binding var experienceLevel: ExperienceLevel
+    @Binding var applicationStatus: ApplicationStatus
     @ObservedObject var viewModel: JobTrackerViewModel
 
     var body: some View {
@@ -21,8 +21,8 @@ struct AddJobView: View {
                     .background(Color(.systemGray6))
                     .cornerRadius(10)
 
-                Picker("Seniority", selection: $experienceLevel) {
-                    ForEach(ExperienceLevel.allCases, id: \.self) { level in
+                Picker("Seniority", selection: $applicationStatus) {
+                    ForEach(ApplicationStatus.allCases, id: \.self) { level in
                         Text(level.rawValue)
                     }
                 }
@@ -57,7 +57,7 @@ struct AddJobView: View {
 struct AddJobView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = JobTrackerViewModel()
-        AddJobView(companyName: .constant("Company Name"), jobTitle: .constant("Job Title"), remoteJob: .constant(false), experienceLevel: .constant(.junior), viewModel: viewModel)
+        AddJobView(companyName: .constant("Company Name"), jobTitle: .constant("Job Title"), remoteJob: .constant(false), applicationStatus: .constant(.applied), viewModel: viewModel)
     }
 }
 

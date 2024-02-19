@@ -43,34 +43,35 @@ struct JobTrackerView: View {
                                                 // Conteúdo do cartão
                                                 Text(viewModel.jobsList[index].companyName)
                                                     .font(.headline)
-                                                    .foregroundColor(.white)
+                                                    .foregroundColor(viewModel.jobsList[index].textColor)
+
                                                 Spacer()
+
                                                 Text("in-site")
-                                                    .font(.footnote)
-                                                    .foregroundColor(.white)
+                                                .font(.footnote)
+                                                .foregroundColor(viewModel.jobsList[index].textColor)
                                             }
-                                            
+
                                             Text(viewModel.jobsList[index].jobTitle)
                                                 .font(.subheadline)
-                                                .foregroundColor(.white)
-                                            
+                                                .foregroundColor(viewModel.jobsList[index].textColor)
+
                                             HStack {
                                                 Image(systemName: "eurosign")
-                                                    .foregroundStyle(Color.white)
                                                     .font(.footnote)
-                                                
+                                                    .foregroundColor(viewModel.jobsList[index].textColor)
+
                                                 Text("55k - 60k")
                                                     .font(.footnote)
-                                                    .foregroundColor(.white)
+                                                    .foregroundColor(viewModel.jobsList[index].textColor)
                                             }
                                         }
                                         Spacer()
                                         
                                     }
-                                    .frame(maxHeight: .infinity)
+                                    .frame(width: viewModel.jobsList[index].cardWidth)
                                     .padding(15) // Espaçamento interno do card
-                                    .background(Color.black.opacity(0.8))
-                                    .cornerRadius(10)
+                                    .background(viewModel.jobsList[index].backgroundColor.opacity(0.5))         .cornerRadius(30)
                                 }
                                 
                             }
@@ -99,7 +100,7 @@ struct JobTrackerView: View {
             .padding()
             .navigationTitle("Applications")
             .sheet(isPresented: $viewModel.isShowingAddJobView) {
-                AddJobView(companyName: $viewModel.companyName, jobTitle: $viewModel.jobTitle, remoteJob: $viewModel.remoteJob, experienceLevel: $viewModel.experienceLevel, viewModel: viewModel)
+                AddJobView(companyName: $viewModel.companyName, jobTitle: $viewModel.jobTitle, remoteJob: $viewModel.remoteJob, applicationStatus: $viewModel.applicationStatus, viewModel: viewModel)
             }
         }
     }
