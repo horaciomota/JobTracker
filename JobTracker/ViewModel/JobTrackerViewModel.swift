@@ -13,17 +13,23 @@ class JobTrackerViewModel: ObservableObject {
 
     @Published var companyName = ""
     @Published var jobTitle = "Ios Developer"
-    @Published var remoteJob = false
+    @Published var remoteJob = true
     @Published var applicationDate = Date()
     @Published var applicationStatus: ApplicationStatus = .applied
+    @Published var seniorityLevel: SeniorityLevel = .junior
+
 
     init(jobs: [Job] = []) {
            self.jobsList = jobs
        }
 
+    var sortedJobsList: [Job] {
+         return jobsList.sorted(by: { $0.applicationDate > $1.applicationDate })
+     }
+
     func addJob() {
         if !companyName.isEmpty && !jobTitle.isEmpty {
-            jobsList.append(Job(companyName: companyName, jobTitle: jobTitle, remoteJob: remoteJob, applicationDate: applicationDate, applicationStatus: applicationStatus))
+            jobsList.append(Job(companyName: companyName, jobTitle: jobTitle, remoteJob: remoteJob, applicationDate: applicationDate, applicationStatus: applicationStatus, seniorityLevel: .junior))
             saveTasks()
             companyName = ""
             jobTitle = ""

@@ -16,6 +16,13 @@ enum ApplicationStatus: String, CaseIterable {
 
 }
 
+enum SeniorityLevel: String, CaseIterable {
+    case intern = "Intern"
+    case junior = "Junior"
+    case mid = "Mid"
+    case senior = "Senior"
+}
+
 struct Job: Identifiable {
     let id = UUID()
     var companyName: String
@@ -23,6 +30,7 @@ struct Job: Identifiable {
     var remoteJob: Bool
     var applicationDate: Date
     var applicationStatus: ApplicationStatus
+    var seniorityLevel: SeniorityLevel
 
     var backgroundColor: Color {
           switch applicationStatus {
@@ -36,20 +44,6 @@ struct Job: Identifiable {
               return Color.green // Adicionamos a cor verde para o status "hired"
           }
       }
-
-
-    var cardWidth: CGFloat {
-         switch applicationStatus {
-         case .applied:
-             return 250 // Largura para status "applied"
-         case .interviewed:
-             return 250 // Largura para status "interview"
-         case .hired:
-             return 250 // Largura para status "hired"
-         case .rejected:
-             return 250 // Largura para status "rejected"
-         }
-     }
 
     var textColor: Color {
         switch applicationStatus {

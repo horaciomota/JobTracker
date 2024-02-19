@@ -10,32 +10,47 @@ struct AddJobView: View {
     @Binding var companyName: String
     @Binding var jobTitle: String
     @Binding var remoteJob: Bool
+    @Binding var applicationDate: Date
     @Binding var applicationStatus: ApplicationStatus
+    @Binding var seniorityLevel: SeniorityLevel
     @ObservedObject var viewModel: JobTrackerViewModel
 
     var body: some View {
-        Form {
-            Section(header: Text("Job Details")) {
-                TextField("Company Name", text: $companyName)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-
-                Picker("Seniority", selection: $applicationStatus) {
-                    ForEach(ApplicationStatus.allCases, id: \.self) { level in
-                        Text(level.rawValue)
-                    }
+        VStack {
+            Picker("Application status", selection: $applicationStatus) {
+                ForEach(ApplicationStatus.allCases, id: \.self) { level in
+                    Text(level.rawValue)
                 }
-                .pickerStyle(SegmentedPickerStyle())
+            }
+            .pickerStyle(SegmentedPickerStyle())
 
+            TextField("Company Name", text: $companyName)
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+
+            HStack {
                 TextField("Job Title", text: $jobTitle)
                     .padding()
                     .background(Color(.systemGray6))
                     .cornerRadius(10)
 
-                Toggle("Remote Job", isOn: $remoteJob)
-                    .padding(.vertical)
+                Picker("Junior", selection: $seniorityLevel) {
+                    ForEach(SeniorityLevel.allCases, id: \.self) { level in
+                        Text(level.rawValue)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
             }
+
+
+            DatePicker("Application Date", selection: $applicationDate, displayedComponents: .date)
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+
+                .pickerStyle(MenuPickerStyle())
+                         Toggle("Remote Job", isOn: $remoteJob)
 
             Button(action: {
                 viewModel.addJob()
@@ -45,21 +60,23 @@ struct AddJobView: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color.black)
+                    .background(Color.blue)
                     .cornerRadius(10)
             }
-            .padding(.horizontal)
+            Spacer()
         }
-        .navigationBarTitle("Add Job", displayMode: .inline)
+        .padding(.horizontal)
+        .padding(.top, 40)
     }
 }
 
 struct AddJobView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = JobTrackerViewModel()
-        AddJobView(companyName: .constant("Company Name"), jobTitle: .constant("Job Title"), remoteJob: .constant(false), applicationStatus: .constant(.applied), viewModel: viewModel)
+        AddJobView(companyName: .constant("Company Name"), jobTitle: .constant("Job Title"), remoteJob: .constant(false), applicationDate: .constant(Date()), applicationStatus: .constant(.applied), seniorityLevel: .constant(.junior), viewModel: viewModel)
     }
 }
+
 
 
 
