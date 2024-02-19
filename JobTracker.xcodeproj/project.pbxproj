@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D860A102B82ADF1001C1398 /* applicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D860A0F2B82ADF1001C1398 /* applicationCell.swift */; };
 		3D860A122B840381001C1398 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D860A112B840381001C1398 /* TabBar.swift */; };
+		3D860A142B841043001C1398 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D860A132B841043001C1398 /* StatisticsView.swift */; };
 		3DA2515C2B79287F00C0938A /* JobTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA2515B2B79287F00C0938A /* JobTrackerApp.swift */; };
 		3DA2515E2B79287F00C0938A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA2515D2B79287F00C0938A /* ContentView.swift */; };
 		3DA251602B79288100C0938A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DA2515F2B79288100C0938A /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		3D860A0F2B82ADF1001C1398 /* applicationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = applicationCell.swift; sourceTree = "<group>"; };
 		3D860A112B840381001C1398 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		3D860A132B841043001C1398 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		3DA251582B79287F00C0938A /* JobTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA2515B2B79287F00C0938A /* JobTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTrackerApp.swift; sourceTree = "<group>"; };
 		3DA2515D2B79287F00C0938A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				3D860A0F2B82ADF1001C1398 /* applicationCell.swift */,
 				3DA251912B792D3400C0938A /* addJobView.swift */,
 				3D860A112B840381001C1398 /* TabBar.swift */,
+				3D860A132B841043001C1398 /* StatisticsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				3DA2515E2B79287F00C0938A /* ContentView.swift in Sources */,
 				3DA2518C2B792C9200C0938A /* Job.swift in Sources */,
 				3D860A122B840381001C1398 /* TabBar.swift in Sources */,
+				3D860A142B841043001C1398 /* StatisticsView.swift in Sources */,
 				3DA2515C2B79287F00C0938A /* JobTrackerApp.swift in Sources */,
 				3DA251902B792D0C00C0938A /* JobTrackerView.swift in Sources */,
 				3DA251922B792D3400C0938A /* addJobView.swift in Sources */,

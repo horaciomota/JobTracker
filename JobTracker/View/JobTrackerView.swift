@@ -24,7 +24,6 @@ struct JobTrackerView: View {
                     // Lista
                     List {
                         ForEach(viewModel.sortedJobsList.indices, id: \.self) { index in
-                            // Linha vertical à esquerda (linha do tempo)
                             VStack(alignment: .leading, spacing: 0) {
                                 HStack(alignment: .top) {
 
@@ -39,17 +38,6 @@ struct JobTrackerView: View {
                                     }
                                     .padding(.top, 25)
                                     .padding(.trailing, 5)
-
-
-//                                    ZStack {
-//                                        Rectangle()
-//                                            .frame(width: 1)
-//                                        Circle()
-//                                            .fill(Color.gray)
-//                                            .frame(width: 22, height: 12)
-//                                            .padding(.top, -40)
-//                                    }
-
 
                                     HStack {
                                         VStack(alignment: .leading, spacing: 5) {
@@ -89,7 +77,7 @@ struct JobTrackerView: View {
                                 }
 
                             }
-                            .padding(.leading, -20) // Espaçamento entre a bolinha e a borda esquerda
+                            .padding(.leading, -20)
                         }
                         .onDelete(perform: viewModel.deleteTask)
                     }
@@ -101,15 +89,17 @@ struct JobTrackerView: View {
 
                 Spacer()
 
-                Button(action: {
-                    viewModel.isShowingAddJobView.toggle()
+                ZStack {
+                    Button(action: {
+                        viewModel.isShowingAddJobView.toggle()
 
-                }) {
-                    Text("Adicionar Tarefa")
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(10)
+                    }) {
+                        Text("Adicionar Tarefa")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                }
                 }
             }
             .padding()
@@ -134,6 +124,8 @@ struct JobTrackerView: View {
             Job(companyName: "Company A", jobTitle: "Job A", remoteJob: true, applicationDate: Date(), applicationStatus: .applied, seniorityLevel: .junior),
             Job(companyName: "Company B", jobTitle: "Job B", remoteJob: false, applicationDate: Date(), applicationStatus: .interviewed, seniorityLevel: .junior),
             Job(companyName: "Company C", jobTitle: "Job C", remoteJob: true, applicationDate: Date(), applicationStatus: .hired, seniorityLevel: .junior),
+            Job(companyName: "Company D", jobTitle: "Job D", remoteJob: false, applicationDate: Date(), applicationStatus: .rejected, seniorityLevel: .junior),
+            Job(companyName: "Company D", jobTitle: "Job D", remoteJob: false, applicationDate: Date(), applicationStatus: .rejected, seniorityLevel: .junior),
             Job(companyName: "Company D", jobTitle: "Job D", remoteJob: false, applicationDate: Date(), applicationStatus: .rejected, seniorityLevel: .junior)
         ]
 
