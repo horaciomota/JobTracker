@@ -16,6 +16,13 @@ enum ApplicationStatus: String, CaseIterable {
 
 }
 
+enum SeniorityLevel: String, CaseIterable {
+    case intern = "Intern"
+    case junior = "Junior"
+    case mid = "Mid"
+    case senior = "Senior"
+}
+
 struct Job: Identifiable {
     let id = UUID()
     var companyName: String
@@ -23,6 +30,7 @@ struct Job: Identifiable {
     var remoteJob: Bool
     var applicationDate: Date
     var applicationStatus: ApplicationStatus
+    var seniorityLevel: SeniorityLevel
 
     var backgroundColor: Color {
           switch applicationStatus {

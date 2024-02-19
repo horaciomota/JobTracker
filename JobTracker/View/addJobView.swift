@@ -12,11 +12,12 @@ struct AddJobView: View {
     @Binding var remoteJob: Bool
     @Binding var applicationDate: Date
     @Binding var applicationStatus: ApplicationStatus
+    @Binding var seniorityLevel: SeniorityLevel
     @ObservedObject var viewModel: JobTrackerViewModel
 
     var body: some View {
         VStack {
-            Picker("Seniority", selection: $applicationStatus) {
+            Picker("Application status", selection: $applicationStatus) {
                 ForEach(ApplicationStatus.allCases, id: \.self) { level in
                     Text(level.rawValue)
                 }
@@ -28,18 +29,28 @@ struct AddJobView: View {
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
 
-            TextField("Job Title", text: $jobTitle)
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(10)
+            HStack {
+                TextField("Job Title", text: $jobTitle)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(10)
+
+                Picker("Junior", selection: $seniorityLevel) {
+                    ForEach(SeniorityLevel.allCases, id: \.self) { level in
+                        Text(level.rawValue)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
+            }
+
 
             DatePicker("Application Date", selection: $applicationDate, displayedComponents: .date)
                 .padding()
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
 
-            Toggle("Remote Job", isOn: $remoteJob)
-                .padding(.vertical)
+                .pickerStyle(MenuPickerStyle())
+                         Toggle("Remote Job", isOn: $remoteJob)
 
             Button(action: {
                 viewModel.addJob()
@@ -49,18 +60,20 @@ struct AddJobView: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color.black)
+                    .background(Color.blue)
                     .cornerRadius(10)
             }
+            Spacer()
         }
         .padding(.horizontal)
+        .padding(.top, 40)
     }
 }
 
 struct AddJobView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = JobTrackerViewModel()
-        AddJobView(companyName: .constant("Company Name"), jobTitle: .constant("Job Title"), remoteJob: .constant(false), applicationDate: .constant(Date()), applicationStatus: .constant(.applied), viewModel: viewModel)
+        AddJobView(companyName: .constant("Company Name"), jobTitle: .constant("Job Title"), remoteJob: .constant(false), applicationDate: .constant(Date()), applicationStatus: .constant(.applied), seniorityLevel: .constant(.junior), viewModel: viewModel)
     }
 }
 
