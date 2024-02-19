@@ -9,30 +9,30 @@ import SwiftUI
 
 struct JobTrackerView: View {
     @StateObject private var viewModel = JobTrackerViewModel()
-    
+
     init(viewModel: JobTrackerViewModel = JobTrackerViewModel()) {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
-    
+
     var body: some View {
         NavigationView {
             VStack {
                 if viewModel.jobsList.isEmpty {
                     ContentUnavailable()
                 } else {
-                    
+
                     // Lista
                     List {
                         ForEach(viewModel.jobsList.indices, id: \.self) { index in
                             // Linha vertical à esquerda (linha do tempo)
                             VStack(alignment: .leading, spacing: 0) {
                                 HStack(alignment: .top) {
-                                    
+
                                     VStack(alignment: .center, spacing: 0) {
-                                        Text("Dez")
+                                        Text(viewModel.formattedDate(from: viewModel.jobsList[index].applicationDate)) // Aqui você exibe a data de aplicação formatada como string
                                             .font(.caption)
                                             .foregroundColor(.gray)
-                                        Text("7")
+                                        Text(viewModel.formattedDay(from: viewModel.jobsList[index].applicationDate)) // Aqui você exibe o dia da data de aplicação formatado como string
                                             .font(.title)
                                     }
                                     .padding(.top, 15)
@@ -45,8 +45,8 @@ struct JobTrackerView: View {
                                             .frame(width: 22, height: 12)
                                             .padding(.top, -40)
                                     }
-                                    
-                                    
+
+
                                     HStack {
                                         VStack(alignment: .leading, spacing: 10) {
                                             HStack {
@@ -76,28 +76,28 @@ struct JobTrackerView: View {
                                             }
                                         }
                                         Spacer()
-                                        
+
                                     }
                                     .frame(maxWidth: .infinity)
                                     .padding(15) // Espaçamento interno do card
                                     .background(viewModel.jobsList[index].backgroundColor.opacity(0.5))         .cornerRadius(30)
                                 }
-                                
+
                             }
                             .padding(.leading, -20) // Espaçamento entre a bolinha e a borda esquerda
                         }
                         .onDelete(perform: viewModel.deleteTask)
                     }
                     .listStyle(PlainListStyle())
-                    
-                    
+
+
                 }
-                
+
                 Spacer()
-                
+
                 Button(action: {
                     viewModel.isShowingAddJobView.toggle()
-                    
+
                 }) {
                     Text("Adicionar Tarefa")
                         .padding()
@@ -116,6 +116,7 @@ struct JobTrackerView: View {
         }
     }
 }
+
 
 #Preview {
         let viewModel = JobTrackerViewModel()
@@ -138,6 +139,20 @@ struct ContentUnavailable: View {
             Text("New applications you receive will appear here.")
         }
         .foregroundColor(.gray)
+    }
+}
+
+extension JobTrackerViewModel {
+    func formattedDate(from date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM"
+        return dateFormatter.string(from: date)
+    }
+
+    func formattedDay(from date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd"
+        return dateFormatter.string(from: date)
     }
 }
 
