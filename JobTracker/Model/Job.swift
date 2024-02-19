@@ -6,21 +6,60 @@
 //
 
 import Foundation
+import SwiftUI
 
-// Struct needs to be codable because i need to parse data to default
-struct Job: Codable {
-    var companyName: String
-    var position: String
-    var country: String
-    var isRemote: Bool
-    var applicationDate: Date
-    var status: String
-    var seniority: String
+enum ApplicationStatus: String, CaseIterable {
+    case applied = "Applied"
+    case interviewed = "Interviewed"
+    case rejected = "Rejected"
+    case hired = "Hired"
 
-    var daysSinceApplication: Int { // Computed property para calcular o número de dias desde a aplicação
-            let calendar = Calendar.current
-            let currentDate = Date()
-            let days = calendar.dateComponents([.day], from: applicationDate, to: currentDate).day ?? 0
-            return max(days, 0)
-        }
 }
+
+struct Job: Identifiable {
+    let id = UUID()
+    var companyName: String
+    var jobTitle: String
+    var remoteJob: Bool
+    var applicationDate: Date
+    var applicationStatus: ApplicationStatus
+
+    var backgroundColor: Color {
+          switch applicationStatus {
+          case .applied:
+              return Color.black
+          case .interviewed:
+              return Color.yellow
+          case .rejected:
+              return Color.purple
+          case .hired:
+              return Color.green // Adicionamos a cor verde para o status "hired"
+          }
+      }
+
+
+    var cardWidth: CGFloat {
+         switch applicationStatus {
+         case .applied:
+             return 250 // Largura para status "applied"
+         case .interviewed:
+             return 250 // Largura para status "interview"
+         case .hired:
+             return 250 // Largura para status "hired"
+         case .rejected:
+             return 250 // Largura para status "rejected"
+         }
+     }
+
+    var textColor: Color {
+        switch applicationStatus {
+        case .applied:
+            return Color.white
+        default:
+            return Color.black
+        }
+    }
+
+
+}
+

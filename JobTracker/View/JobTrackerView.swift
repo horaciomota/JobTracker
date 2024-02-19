@@ -8,110 +8,137 @@
 import SwiftUI
 
 struct JobTrackerView: View {
-    @StateObject var viewModel = JobTrackerViewModel()
-    @State private var isAddJobPresented = false
-
+    @StateObject private var viewModel = JobTrackerViewModel()
+    
+    init(viewModel: JobTrackerViewModel = JobTrackerViewModel()) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
     var body: some View {
         NavigationView {
-            List {
-                // Top statis
-                HStack {
-                    VStack {
-                        Text("\(viewModel.jobs.count)")
-                            .font(.title)
-                        Text("Aplications")
-                }
-                    Spacer()
-                VStack {
-                    Text("\(viewModel.jobs.count)")
-                        .font(.title)
-                    Text("Interviews")
-                }
-                    Spacer()
-                VStack {
-                    Text("\(viewModel.jobs.count)")
-                        .font(.title)
-                    Text("Rejections")
-                }
-                }
+            VStack {
+                if viewModel.jobsList.isEmpty {
+                    ContentUnavailable()
+                } else {
+                    
+                    // Lista
+                    List {
+                        ForEach(viewModel.jobsList.indices, id: \.self) { index in
+                            // Linha vertical à esquerda (linha do tempo)
+                            VStack(alignment: .leading, spacing: 0) {
+                                HStack(alignment: .top) {
+                                    
+                                    VStack(alignment: .center, spacing: 0) {
+                                        Text("Dez")
+                                            .font(.caption)
+                                            .foregroundColor(.gray)
+                                        Text("7")
+                                            .font(.title)
+                                    }
+                                    .padding(.top, 15)
 
-                Text("Número de trabalhos: \(viewModel.jobs.count)")
-                ForEach(viewModel.jobs.indices, id: \.self) { index in
-                    JobCellView(job: viewModel.jobs[index])
+                                    ZStack {
+                                        Rectangle()
+                                            .frame(width: 1)
+                                        Circle()
+                                            .fill(Color.gray)
+                                            .frame(width: 22, height: 12)
+                                            .padding(.top, -40)
+                                    }
+                                    
+                                    
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 10) {
+                                            HStack {
+                                                // Conteúdo do cartão
+                                                Text(viewModel.jobsList[index].companyName)
+                                                    .font(.headline)
+                                                    .foregroundColor(viewModel.jobsList[index].textColor)
+
+                                                Spacer()
+
+                                                Text("in-site")
+                                                .font(.footnote)
+                                                .foregroundColor(viewModel.jobsList[index].textColor)
+                                            }
+
+                                            Text(viewModel.jobsList[index].jobTitle)
+                                                .font(.subheadline)
+                                                .foregroundColor(viewModel.jobsList[index].textColor)
+
+                                            HStack {
+                                                Image(systemName: "eurosign")
+                                                    .font(.footnote)
+                                                    .foregroundColor(viewModel.jobsList[index].textColor)
+
+                                                Text("55k - 60k")
+                                                    .font(.footnote)
+                                                    .foregroundColor(viewModel.jobsList[index].textColor)
+                                            }
+                                        }
+                                        Spacer()
+                                        
+                                    }
+                                    .frame(width: viewModel.jobsList[index].cardWidth)
+                                    .padding(15) // Espaçamento interno do card
+                                    .background(viewModel.jobsList[index].backgroundColor.opacity(0.5))         .cornerRadius(30)
+                                }
+                                
+                            }
+                            .padding(.leading, -20) // Espaçamento entre a bolinha e a borda esquerda
+                        }
+                        .onDelete(perform: viewModel.deleteTask)
+                    }
+                    .listStyle(PlainListStyle())
+                    
+                    
                 }
-                .onDelete(perform: viewModel.deleteJobs(at:))
-            }
-            .navigationTitle("Job Tracker")
-            .navigationBarItems(trailing: Button(action: {
-                isAddJobPresented.toggle()
-            }) {
-                Image(systemName: "plus")
-            })
-            .sheet(isPresented: $isAddJobPresented) {
-                addJobView(viewModel: viewModel)
-            }
-        }
-    }
-}
-
-struct JobCellView: View {
-    var job: Job
-
-    // Defina a função getColorForStatus fora do corpo da View
-    func getColorForStatus(_ status: String) -> Color {
-        switch status {
-        case "Applied":
-            return Color.blue
-        case "Interviewing":
-            return Color.green
-        case "Rejected":
-            return Color.red
-        case "Offer Received":
-            return Color.yellow
-        case "Hired":
-            return Color.purple
-        default:
-            return Color.black
-        }
-    }
-
-    var body: some View {
-        VStack(alignment: .leading) {
-//            VStack{
-//                Text("\(job.daysSinceApplication) days ago")
-//            }
-            HStack {
-                Text(job.position)
-                    .font(.headline)
-                    .fontWeight(.bold)
+                
                 Spacer()
-                Text(job.status)
-                    .font(.subheadline)
-                    .foregroundColor(Color.white)
-                    .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                    .background(RoundedRectangle(cornerRadius: 15)
-                                .fill(getColorForStatus(job.status))
-                                )
+                
+                Button(action: {
+                    viewModel.isShowingAddJobView.toggle()
+                    
+                }) {
+                    Text("Adicionar Tarefa")
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
             }
-            HStack {
-                Text("\(job.companyName) > \(job.seniority)")
-                    .font(.subheadline)
-//                Text(job.isRemote ? "Remote" : "In-site")
-//                    .foregroundColor(Color.gray)
+            .padding()
+            .navigationTitle("Applications")
+            .sheet(isPresented: $viewModel.isShowingAddJobView) {
+                AddJobView(companyName: $viewModel.companyName, jobTitle: $viewModel.jobTitle, remoteJob: $viewModel.remoteJob, applicationStatus: $viewModel.applicationStatus, viewModel: viewModel)
             }
-//            Text("Application Date: \(job.applicationDate, formatter: dateFormatter)")
         }
-        .padding()
     }
-
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        return formatter
-    }()
 }
+
+
 
 
 #Preview {
-    JobTrackerView()
+        let viewModel = JobTrackerViewModel()
+        viewModel.jobsList = [
+            Job(companyName: "Company A", jobTitle: "Job A", remoteJob: true, applicationDate: Date(), applicationStatus: .applied),
+            Job(companyName: "Company B", jobTitle: "Job B", remoteJob: false, applicationDate: Date(), applicationStatus: .interviewed),
+            Job(companyName: "Company C", jobTitle: "Job C", remoteJob: true, applicationDate: Date(), applicationStatus: .hired),
+            Job(companyName: "Company D", jobTitle: "Job D", remoteJob: false, applicationDate: Date(), applicationStatus: .rejected)
+        ]
+
+        return JobTrackerView(viewModel: viewModel)
+    }
+
+
+struct ContentUnavailable: View {
+    var body: some View {
+        ContentUnavailableView {
+            Label("No applications yet", systemImage: "pencil.and.list.clipboard")
+        } description: {
+            Text("New applications you receive will appear here.")
+        }
+        .foregroundColor(.gray)
+    }
 }

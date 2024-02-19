@@ -4,102 +4,62 @@
 //
 //  Created by Horacio Mota on 11/02/24.
 //
-
 import SwiftUI
 
-struct addJobView: View {
-
-    @Environment(\.presentationMode) var presentationMode
+struct AddJobView: View {
+    @Binding var companyName: String
+    @Binding var jobTitle: String
+    @Binding var remoteJob: Bool
+    @Binding var applicationStatus: ApplicationStatus
     @ObservedObject var viewModel: JobTrackerViewModel
 
-    @State private var companyName = ""
-    @State private var position = "Ios Developer"
-    @State private var country = ""
-    @State private var isRemote = false
-    @State private var applicationDate = Date()
-    @State private var selectedSeniorityIndex = 0
-
-    // Adicione um valor padrão para o status
-    @State private var selectedStatusIndex = 0
-    let applicationStatuses = ["Applied", "Interviewing", "Rejected", "Offer Received", "Hired"]
-    
-    // Defina a função getColorForStatus fora do corpo da View
-    func getColorForStatus(_ status: String) -> Color {
-        switch status {
-        case "Applied":
-            return Color.blue
-        case "Interviewing":
-            return Color.green
-        case "Rejected":
-            return Color.red
-        case "Offer Received":
-            return Color.yellow
-        case "Hired":
-            return Color.purple
-        default:
-            return Color.black
-        }
-    }
-
-    let seniorityOptions = ["Inter", "Junior", "Mid", "Senior"]
-
-
-    let statusIcons: [String: String] = [
-            "Applied": "envelope",
-            "Interviewing": "mic",
-            "Rejected": "hand.thumbsdown",
-            "Offer Received": "hand.thumbsup",
-            "Hired": "checkmark"
-        ]
-
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Info")) {
+        Form {
+            Section(header: Text("Job Details")) {
+                TextField("Company Name", text: $companyName)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(10)
 
-                    TextField("Company Name", text: $companyName)
-                    TextField("Positiom", text: $position)
-                    TextField("Country", text: $country)
-                    Picker("Seniority", selection: $selectedSeniorityIndex) {
-                                       ForEach(seniorityOptions.indices, id: \.self) { index in
-                                           Text(seniorityOptions[index])
-                                       }
-                                   }
-                    Toggle("Remote", isOn: $isRemote)
-                    DatePicker("Application Date", selection: $applicationDate, displayedComponents: .date)
+                Picker("Seniority", selection: $applicationStatus) {
+                    ForEach(ApplicationStatus.allCases, id: \.self) { level in
+                        Text(level.rawValue)
+                    }
                 }
+                .pickerStyle(SegmentedPickerStyle())
 
-                Section(header: Text("Status")) {
-                Picker("Status", selection: $selectedStatusIndex) {
-                                   ForEach(applicationStatuses.indices, id: \.self) { index in
-                                       HStack {
-                                           Image(systemName: statusIcons[applicationStatuses[index]] ?? "")
-                                           Text(applicationStatuses[index])
-                                               .foregroundColor(getColorForStatus(applicationStatuses[index]))
+                TextField("Job Title", text: $jobTitle)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(10)
 
-                                       }
-                                       .tag(index)
-                                   }
-                               }
-                               .pickerStyle(WheelPickerStyle())
-                               .clipped()
-                }
-
+                Toggle("Remote Job", isOn: $remoteJob)
+                    .padding(.vertical)
             }
-            .navigationTitle("Add application")
-            .navigationBarItems(trailing: Button("Save", action: saveJob))
+
+            Button(action: {
+                viewModel.addJob()
+                viewModel.isShowingAddJobView.toggle()
+            }) {
+                Text("Add Application")
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.black)
+                    .cornerRadius(10)
+            }
+            .padding(.horizontal)
         }
+        .navigationBarTitle("Add Job", displayMode: .inline)
     }
-
-    private func saveJob() {
-         // Passe o status para o inicializador de Job
-        let newJob = Job(companyName: companyName, position: position, country: country, isRemote: isRemote, applicationDate: applicationDate, status: applicationStatuses[selectedStatusIndex], seniority: seniorityOptions[selectedSeniorityIndex])
-         viewModel.addJob(newJob)
-         presentationMode.wrappedValue.dismiss()
-     }
- }
-
-
-#Preview {
-    addJobView(viewModel: JobTrackerViewModel())
 }
+
+struct AddJobView_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewModel = JobTrackerViewModel()
+        AddJobView(companyName: .constant("Company Name"), jobTitle: .constant("Job Title"), remoteJob: .constant(false), applicationStatus: .constant(.applied), viewModel: viewModel)
+    }
+}
+
+
+
