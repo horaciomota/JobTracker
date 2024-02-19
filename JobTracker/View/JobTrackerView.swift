@@ -56,10 +56,9 @@ struct JobTrackerView: View {
                                                     .foregroundColor(viewModel.jobsList[index].textColor)
 
                                                 Spacer()
-
-                                                Text("in-site")
-                                                .font(.footnote)
-                                                .foregroundColor(viewModel.jobsList[index].textColor)
+                                                Text(viewModel.jobsList[index].remoteJob ? "Remote" : "In-site")
+                                                    .font(.footnote)
+                                                    .foregroundColor(viewModel.jobsList[index].textColor)
                                             }
 
                                             Text(viewModel.jobsList[index].jobTitle)
