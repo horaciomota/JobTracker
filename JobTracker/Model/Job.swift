@@ -41,13 +41,13 @@ struct Job: Identifiable {
     var cardWidth: CGFloat {
          switch applicationStatus {
          case .applied:
-             return 150 // Largura para status "applied"
+             return 250 // Largura para status "applied"
          case .interviewed:
-             return 200 // Largura para status "interview"
+             return 250 // Largura para status "interview"
          case .hired:
              return 250 // Largura para status "hired"
          case .rejected:
-             return 200 // Largura para status "rejected"
+             return 250 // Largura para status "rejected"
          }
      }
 

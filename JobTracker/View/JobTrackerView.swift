@@ -27,6 +27,16 @@ struct JobTrackerView: View {
                             // Linha vertical à esquerda (linha do tempo)
                             VStack(alignment: .leading, spacing: 0) {
                                 HStack(alignment: .top) {
+                                    
+                                    VStack(alignment: .center, spacing: 0) {
+                                        Text("Dez")
+                                            .font(.caption)
+                                            .foregroundColor(.gray)
+                                        Text("7")
+                                            .font(.title)
+                                    }
+                                    .padding(.top, 15)
+
                                     ZStack {
                                         Rectangle()
                                             .frame(width: 1)
@@ -108,10 +118,18 @@ struct JobTrackerView: View {
 
 
 
-#Preview {
-    JobTrackerView()
-}
 
+#Preview {
+        let viewModel = JobTrackerViewModel()
+        viewModel.jobsList = [
+            Job(companyName: "Company A", jobTitle: "Job A", remoteJob: true, applicationDate: Date(), applicationStatus: .applied),
+            Job(companyName: "Company B", jobTitle: "Job B", remoteJob: false, applicationDate: Date(), applicationStatus: .interviewed),
+            Job(companyName: "Company C", jobTitle: "Job C", remoteJob: true, applicationDate: Date(), applicationStatus: .hired),
+            Job(companyName: "Company D", jobTitle: "Job D", remoteJob: false, applicationDate: Date(), applicationStatus: .rejected)
+        ]
+
+        return JobTrackerView(viewModel: viewModel)
+    }
 
 
 struct ContentUnavailable: View {
