@@ -10,32 +10,36 @@ struct AddJobView: View {
     @Binding var companyName: String
     @Binding var jobTitle: String
     @Binding var remoteJob: Bool
+    @Binding var applicationDate: Date
     @Binding var applicationStatus: ApplicationStatus
     @ObservedObject var viewModel: JobTrackerViewModel
 
     var body: some View {
-        Form {
-            Section(header: Text("Job Details")) {
-                TextField("Company Name", text: $companyName)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-
-                Picker("Seniority", selection: $applicationStatus) {
-                    ForEach(ApplicationStatus.allCases, id: \.self) { level in
-                        Text(level.rawValue)
-                    }
+        VStack {
+            Picker("Seniority", selection: $applicationStatus) {
+                ForEach(ApplicationStatus.allCases, id: \.self) { level in
+                    Text(level.rawValue)
                 }
-                .pickerStyle(SegmentedPickerStyle())
-
-                TextField("Job Title", text: $jobTitle)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(10)
-
-                Toggle("Remote Job", isOn: $remoteJob)
-                    .padding(.vertical)
             }
+            .pickerStyle(SegmentedPickerStyle())
+
+            TextField("Company Name", text: $companyName)
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+
+            TextField("Job Title", text: $jobTitle)
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+
+            DatePicker("Application Date", selection: $applicationDate, displayedComponents: .date)
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+
+            Toggle("Remote Job", isOn: $remoteJob)
+                .padding(.vertical)
 
             Button(action: {
                 viewModel.addJob()
@@ -48,18 +52,18 @@ struct AddJobView: View {
                     .background(Color.black)
                     .cornerRadius(10)
             }
-            .padding(.horizontal)
         }
-        .navigationBarTitle("Add Job", displayMode: .inline)
+        .padding(.horizontal)
     }
 }
 
 struct AddJobView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = JobTrackerViewModel()
-        AddJobView(companyName: .constant("Company Name"), jobTitle: .constant("Job Title"), remoteJob: .constant(false), applicationStatus: .constant(.applied), viewModel: viewModel)
+        AddJobView(companyName: .constant("Company Name"), jobTitle: .constant("Job Title"), remoteJob: .constant(false), applicationDate: .constant(Date()), applicationStatus: .constant(.applied), viewModel: viewModel)
     }
 }
+
 
 
 

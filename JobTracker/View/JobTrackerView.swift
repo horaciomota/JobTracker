@@ -78,7 +78,7 @@ struct JobTrackerView: View {
                                         Spacer()
                                         
                                     }
-                                    .frame(width: viewModel.jobsList[index].cardWidth)
+                                    .frame(maxWidth: .infinity)
                                     .padding(15) // Espaçamento interno do card
                                     .background(viewModel.jobsList[index].backgroundColor.opacity(0.5))         .cornerRadius(30)
                                 }
@@ -109,14 +109,13 @@ struct JobTrackerView: View {
             .padding()
             .navigationTitle("Applications")
             .sheet(isPresented: $viewModel.isShowingAddJobView) {
-                AddJobView(companyName: $viewModel.companyName, jobTitle: $viewModel.jobTitle, remoteJob: $viewModel.remoteJob, applicationStatus: $viewModel.applicationStatus, viewModel: viewModel)
+                AddJobView(companyName: $viewModel.companyName, jobTitle: $viewModel.jobTitle, remoteJob: $viewModel.remoteJob, applicationDate: $viewModel.applicationDate, applicationStatus: $viewModel.applicationStatus, viewModel: viewModel)
+                    .presentationDetents([.fraction(0.5), .large])
+                    .presentationDragIndicator(.visible)
             }
         }
     }
 }
-
-
-
 
 #Preview {
         let viewModel = JobTrackerViewModel()
@@ -141,3 +140,4 @@ struct ContentUnavailable: View {
         .foregroundColor(.gray)
     }
 }
+

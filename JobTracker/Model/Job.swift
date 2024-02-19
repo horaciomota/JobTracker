@@ -37,20 +37,6 @@ struct Job: Identifiable {
           }
       }
 
-
-    var cardWidth: CGFloat {
-         switch applicationStatus {
-         case .applied:
-             return 250 // Largura para status "applied"
-         case .interviewed:
-             return 250 // Largura para status "interview"
-         case .hired:
-             return 250 // Largura para status "hired"
-         case .rejected:
-             return 250 // Largura para status "rejected"
-         }
-     }
-
     var textColor: Color {
         switch applicationStatus {
         case .applied:
