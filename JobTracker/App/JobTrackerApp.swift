@@ -11,7 +11,7 @@ import SwiftUI
 struct JobTrackerApp: App {
     var body: some Scene {
         WindowGroup {
-            JobTrackerView()
+            TabBar()
         }
     }
 }
