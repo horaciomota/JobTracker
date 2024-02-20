@@ -94,16 +94,16 @@ struct JobTrackerView: View {
                         viewModel.isShowingAddJobView.toggle()
 
                     }) {
-                        Text("Adicionar Tarefa")
+                        Image(systemName: "plus")
                             .padding()
                             .foregroundColor(.white)
                             .background(Color.blue)
-                            .cornerRadius(10)
+                            .cornerRadius(50)
                 }
                 }
             }
             .padding()
-            .navigationTitle("Applications")
+            .navigationTitle("\(viewModel.jobsList.count) Applications")
             .sheet(isPresented: $viewModel.isShowingAddJobView) {
                 AddJobView(companyName: $viewModel.companyName, jobTitle: $viewModel.jobTitle, remoteJob: $viewModel.remoteJob, applicationDate: $viewModel.applicationDate, applicationStatus: $viewModel.applicationStatus, seniorityLevel: $viewModel.seniorityLevel, viewModel: viewModel)
                       .presentationDetents([.fraction(0.5), .large])
@@ -125,7 +125,7 @@ struct JobTrackerView: View {
             Job(companyName: "Company B", jobTitle: "Job B", remoteJob: false, applicationDate: Date(), applicationStatus: .interviewed, seniorityLevel: .junior),
             Job(companyName: "Company C", jobTitle: "Job C", remoteJob: true, applicationDate: Date(), applicationStatus: .hired, seniorityLevel: .junior),
             Job(companyName: "Company D", jobTitle: "Job D", remoteJob: false, applicationDate: Date(), applicationStatus: .rejected, seniorityLevel: .junior),
-            Job(companyName: "Company D", jobTitle: "Job D", remoteJob: false, applicationDate: Date(), applicationStatus: .rejected, seniorityLevel: .junior),
+            Job(companyName: "Company D", jobTitle: "Job D", remoteJob: false, applicationDate: Date(), applicationStatus: .hired, seniorityLevel: .junior),
             Job(companyName: "Company D", jobTitle: "Job D", remoteJob: false, applicationDate: Date(), applicationStatus: .rejected, seniorityLevel: .junior)
         ]
 

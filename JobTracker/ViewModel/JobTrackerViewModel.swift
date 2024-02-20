@@ -37,6 +37,16 @@ class JobTrackerViewModel: ObservableObject {
         }
     }
 
+    func editJob(at index: Int, with updatedJob: Job) {
+        guard index >= 0 && index < jobsList.count else {
+            return
+        }
+
+        jobsList[index] = updatedJob
+        saveTasks()
+    }
+
+
     func deleteTask(at offsets: IndexSet) {
         jobsList.remove(atOffsets: offsets)
         saveTasks()
