@@ -23,63 +23,7 @@ struct JobTrackerView: View {
 
                     // Lista
                     List {
-                        ForEach(viewModel.sortedJobsList.indices, id: \.self) { index in
-                            VStack(alignment: .leading, spacing: 0) {
-                                HStack(alignment: .top) {
 
-                                    VStack(alignment: .center, spacing: 0) {
-                                        Text(viewModel.formattedDate(from: viewModel.sortedJobsList[index].applicationDate))
-                                            .font(.caption)
-                                            .foregroundColor(.gray.opacity(0.7))
-                                        Text(viewModel.formattedDay(from: viewModel.sortedJobsList[index].applicationDate))
-                                            .font(.title)
-                                            .foregroundColor(.gray.opacity(0.7))
-
-                                    }
-                                    .padding(.top, 25)
-                                    .padding(.trailing, 5)
-
-                                    HStack {
-                                        VStack(alignment: .leading, spacing: 5) {
-                                            HStack {
-                                                // Conteúdo do cartão
-                                                Text(viewModel.sortedJobsList[index].companyName)
-                                                    .font(.headline)
-                                                    .foregroundColor(viewModel.sortedJobsList[index].textColor)
-
-                                                Spacer()
-                                                Text(viewModel.sortedJobsList[index].remoteJob ? "Remote" : "In-site")
-                                                    .font(.footnote)
-                                                    .foregroundColor(viewModel.sortedJobsList[index].textColor)
-                                            }
-
-                                            Text(viewModel.sortedJobsList[index].jobTitle)
-                                                .font(.subheadline)
-                                                .foregroundColor(viewModel.sortedJobsList[index].textColor)
-
-                                            HStack {
-                                                Image(systemName: "eurosign")
-                                                    .font(.footnote)
-                                                    .foregroundColor(viewModel.sortedJobsList[index].textColor)
-
-                                                Text("55k - 60k")
-                                                    .font(.footnote)
-                                                    .foregroundColor(viewModel.sortedJobsList[index].textColor)
-                                            }
-                                        }
-                                        Spacer()
-
-                                    }
-                                    .frame(maxWidth: .infinity)
-                                    .padding(15) // Espaçamento interno do card
-                                    .background(viewModel.sortedJobsList[index].backgroundColor.opacity(0.5))         
-                                    .cornerRadius(30)
-                                }
-
-                            }
-                            .padding(.leading, -20)
-                        }
-                        .onDelete(perform: viewModel.deleteTask)
                     }
                     .scrollIndicators(.hidden)
                     .listStyle(PlainListStyle())
@@ -112,8 +56,6 @@ struct JobTrackerView: View {
         }
     }
 }
-
-// Seu código continua abaixo...
 
 
 
