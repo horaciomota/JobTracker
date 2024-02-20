@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TabBar: View {
     @StateObject private var viewModel = JobTrackerViewModel()
+
     @State private var selectedTab = 0
 
     var body: some View {
@@ -20,20 +21,25 @@ struct TabBar: View {
                 }
                 .tag(0)
 
-            AddJobView(companyName: $viewModel.companyName, jobTitle: $viewModel.jobTitle, remoteJob: $viewModel.remoteJob, applicationDate: $viewModel.applicationDate, applicationStatus: $viewModel.applicationStatus, seniorityLevel: $viewModel.seniorityLevel, viewModel: viewModel)                .tabItem {
-                    Image(systemName: "plus")
-                        .background(Color.black)
-                        .clipShape(Circle())
-                }
-                .tag(1)
-
             JobTrackerView()
+            .tabItem {
+                Image(systemName: "plus")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.black)
+                    .clipShape(Circle())
+            }
+            .tag(1)
+
+            StatisticsView()
                 .tabItem {
                     Image(systemName: "chart.bar")
                     Text("Statistics")
                 }
                 .tag(2)
         }
+
+
     }
 }
 
