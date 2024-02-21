@@ -1,6 +1,6 @@
 # JobTracker
 
-JobTracker is a simple iOS application for tracking job applications.
+JobTracker is a simple iOS application for tracking job applications. IOS 17
 
 ## Features
 
